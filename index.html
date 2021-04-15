@@ -10,16 +10,27 @@
   <body>
     <form id="bookForm">
       <label>Title</label>
-      <input type="text" id="titlerInput" placeholder="Add book title"/>
+      <input type="text" id="title" placeholder="Add book title" />
       <p></p>
       <label>Author</label>
-      <input type="text" id="authorInput" placeholder="Add author name" />
+      <input type="text" id="author" placeholder="Add author name" />
       <p></p>
       <label>ISBN</label>
-      <input type="text" id="isbnInput" placeholder="Add ISBN"/>
+      <input type="text" id="isbn" placeholder="Add ISBN" />
       <p></p>
-      <button>Add Book</button>
     </form>
+    <button id="add">Add Book</button>
+    <p></p>
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>ISBN</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
     <script src="booklist.js"></script>
   </body>
 </html>
