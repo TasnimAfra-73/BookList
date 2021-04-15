@@ -5,6 +5,18 @@ const addButton = document.getElementById("add");
 const bookList = document.getElementById("tbody");
 const bookArray = [];
 
+document.addEventListener("DOMContentLoaded", function(){
+    let ui = new UI();
+    let storageData = JSON.parse(localStorage.getItem("books"));
+  if (storageData) {
+    storageData.forEach((element) => {
+      bookArray.push(element);
+      ui.displayBook(element);
+    });
+  }
+});
+
+
 function Book(title, author, isbn) {
   this.title = title;
   this.author = author;
@@ -20,6 +32,7 @@ UI.prototype.addBook = function (book) {
   let bookObj = {title: book.title, author:book.author, isbn: book.isbn};
   bookArray.push(bookObj);
   localStorage.setItem("books", JSON.stringify(bookArray));
+  console.log(bookArray);
 };
 
 UI.prototype.displayBook = function(book){
@@ -36,6 +49,15 @@ UI.prototype.clearField = function(){
     title.value = "";
     author.value = "";
     isbn.value = "";
+}
+
+UI.prototype.getBook = function(){
+    let storageData = JSON.parse(localStorage.getItem("books"));
+  if (storageData) {
+    storageData.forEach((element) => {
+      bookArray.push(element);
+    });
+  }
 }
 
 addButton.onclick = function(event){
