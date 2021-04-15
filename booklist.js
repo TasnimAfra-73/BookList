@@ -34,15 +34,17 @@ UI.prototype.addBook = function (book) {
 UI.prototype.displayBook = function (book) {
   const ui = new UI();
   var bookRow = document.createElement("tr");
+  const dltButton = document.createElement("button");
+  const editButton = document.createElement("button");
+  dltButton.textContent = "x";
+  editButton.textContent = "Edit";
+
   bookRow.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.isbn}</td>
     `;
-  const dltButton = document.createElement("button");
-  const editButton = document.createElement("button");
-  dltButton.textContent = "x";
-  editButton.textContent = "Edit";
+
   bookRow.appendChild(dltButton);
   bookRow.appendChild(editButton);
   bookList.appendChild(bookRow);
@@ -70,11 +72,7 @@ UI.prototype.displayBook = function (book) {
     bookRow.appendChild(editDiv);
 
     updateButton.onclick = function () {
-    //   newTitle.remove();
-    //   newAuthor.remove();
-    //   newISBN.remove();
-    //   updateButton.remove();
-    editDiv.remove();
+      editDiv.remove();
       var title = newTitle.value;
       var author = newAuthor.value;
       var isbn = newISBN.value;
