@@ -32,6 +32,7 @@ UI.prototype.addBook = function (book) {
 };
 
 UI.prototype.displayBook = function (book) {
+  const ui = new UI();
   var bookRow = document.createElement("tr");
   bookRow.innerHTML = `
     <td>${book.title}</td>
@@ -48,29 +49,52 @@ UI.prototype.displayBook = function (book) {
 
   dltButton.onclick = function (event) {
     bookList.deleteRow(event);
-    const ui = new UI();
     ui.deleteBook(book);
   };
 
-  editButton.onclick = function(){
-      console.log("edit clicked");
-    const editForm = document.createElement("form");
+  editButton.onclick = function () {
+    console.log("edit clicked");
+    const editDiv = document.createElement("div");
     const newTitle = document.createElement("input");
-    // const newAuthor = document.createElement("input");
-    // const newISBN = document.createElement("input");
-    // const updateButton = document.createElement("button");
-    const p = document.createElement("p");
-    // updateButton.textContent = "Update";
-    editForm.appendChild(p);
-    editForm.appendChild(newTitle);
-    // editForm.appendChild(p);
-    // editForm.appendChild(newAuthor);
-    // editForm.appendChild(p);
-    // editForm.appendChild(newISBN);
-    // editForm.appendChild(p);
-    // editForm.appendChild(updateButton);
-    bookRow.appendChild(editForm);
-  }
+    const newAuthor = document.createElement("input");
+    const newISBN = document.createElement("input");
+    const updateButton = document.createElement("button");
+    newTitle.placeholder = "Update book title";
+    newAuthor.placeholder = "Update author name";
+    newISBN.placeholder = "Update ISBN";
+    updateButton.textContent = "Update";
+    editDiv.appendChild(newTitle);
+    editDiv.appendChild(newAuthor);
+    editDiv.appendChild(newISBN);
+    editDiv.appendChild(updateButton);
+    bookRow.appendChild(editDiv);
+
+    updateButton.onclick = function () {
+    //   newTitle.remove();
+    //   newAuthor.remove();
+    //   newISBN.remove();
+    //   updateButton.remove();
+    editDiv.remove();
+      var title = newTitle.value;
+      var author = newAuthor.value;
+      var isbn = newISBN.value;
+      var currentIndex = bookArray.indexOf(book);
+      if (currentIndex > -1) {
+        bookArray[currentIndex].title = title;
+        bookArray[currentIndex].author = author;
+        bookArray[currentIndex].isbn = isbn;
+      }
+      bookRow.innerHTML = `
+      <td>${book.title}</td>
+      <td>${book.author}</td>
+      <td>${book.isbn}</td>
+      `;
+      bookRow.appendChild(dltButton);
+      bookRow.appendChild(editButton);
+      bookList.appendChild(bookRow);
+      localStorage.setItem("books", JSON.stringify(bookArray));
+    };
+  };
 };
 
 UI.prototype.clearField = function () {
@@ -108,5 +132,3 @@ addButton.onclick = function (event) {
   }
   event.preventDefault();
 };
-
-
