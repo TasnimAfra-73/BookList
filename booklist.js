@@ -44,16 +44,47 @@ UI.prototype.displayBook = function (book) {
     <td>${book.isbn}</td>
     `;
   const dltButton = document.createElement("button");
+  const editButton = document.createElement("button");
   dltButton.textContent = "x";
+  editButton.textContent = "Edit";
   bookRow.appendChild(dltButton);
+  bookRow.appendChild(editButton);
   bookList.appendChild(bookRow);
-
 
   dltButton.onclick = function (event) {
     bookList.deleteRow(event);
     const ui = new UI();
     ui.deleteBook(book);
   };
+
+  editButton.onclick - function(event){
+    const editForm = document.createElement("form");
+    const newTitle = document.createElement("input");
+    const newAuthor = document.createElement("input");
+    const newISBN = document.createElement("input");
+    const updateButton = document.createElement("button");
+    const p = document.createElement("p");
+    updateButton.textContent = "Update";
+    editForm.appendChild(p);
+    editForm.appendChild(newTitle);
+    editForm.appendChild(p);
+    editForm.appendChild(newAuthor);
+    editForm.appendChild(p);
+    editForm.appendChild(newISBN);
+    editForm.appendChild(p);
+    editForm.appendChild(updateButton);
+    bookList.appendChild(editForm);
+
+    // updatedText.value = input.todo;
+    // updateButton.onclick = function () {
+    //   todoList.innerHTML = updatedText.value;
+    //   updatedText.remove();
+    //   updateButton.remove();
+    //   p.remove();
+    //   input.todo = updatedText.value;   
+    //   localStorage.setItem("todo", JSON.stringify(todoArray));
+    // };
+  }
 };
 
 UI.prototype.clearField = function () {
