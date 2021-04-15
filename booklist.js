@@ -26,17 +26,12 @@ function Book(title, author, isbn) {
 function UI() {}
 
 UI.prototype.addBook = function (book) {
-  console.log(book.title);
-  console.log(book.author);
-  console.log(book.isbn);
   let bookObj = { title: book.title, author: book.author, isbn: book.isbn };
   bookArray.push(bookObj);
   localStorage.setItem("books", JSON.stringify(bookArray));
-  console.log(bookArray);
 };
 
 UI.prototype.displayBook = function (book) {
-    // console.log(book);
   var bookRow = document.createElement("tr");
   bookRow.innerHTML = `
     <td>${book.title}</td>
@@ -57,33 +52,24 @@ UI.prototype.displayBook = function (book) {
     ui.deleteBook(book);
   };
 
-  editButton.onclick - function(event){
+  editButton.onclick = function(){
+      console.log("edit clicked");
     const editForm = document.createElement("form");
     const newTitle = document.createElement("input");
-    const newAuthor = document.createElement("input");
-    const newISBN = document.createElement("input");
-    const updateButton = document.createElement("button");
+    // const newAuthor = document.createElement("input");
+    // const newISBN = document.createElement("input");
+    // const updateButton = document.createElement("button");
     const p = document.createElement("p");
-    updateButton.textContent = "Update";
+    // updateButton.textContent = "Update";
     editForm.appendChild(p);
     editForm.appendChild(newTitle);
-    editForm.appendChild(p);
-    editForm.appendChild(newAuthor);
-    editForm.appendChild(p);
-    editForm.appendChild(newISBN);
-    editForm.appendChild(p);
-    editForm.appendChild(updateButton);
-    bookList.appendChild(editForm);
-
-    // updatedText.value = input.todo;
-    // updateButton.onclick = function () {
-    //   todoList.innerHTML = updatedText.value;
-    //   updatedText.remove();
-    //   updateButton.remove();
-    //   p.remove();
-    //   input.todo = updatedText.value;   
-    //   localStorage.setItem("todo", JSON.stringify(todoArray));
-    // };
+    // editForm.appendChild(p);
+    // editForm.appendChild(newAuthor);
+    // editForm.appendChild(p);
+    // editForm.appendChild(newISBN);
+    // editForm.appendChild(p);
+    // editForm.appendChild(updateButton);
+    bookRow.appendChild(editForm);
   }
 };
 
