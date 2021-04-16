@@ -2,11 +2,25 @@ const title = document.getElementById("title");
 const author = document.getElementById("author");
 const isbn = document.getElementById("isbn");
 const searchInput = document.getElementById("searchInput");
+const bookForm = document.getElementById("bookForm");
 const searchForm = document.getElementById("searchForm");
 const addButton = document.getElementById("add");
 const dltButton = document.getElementById("delete");
 const bookList = document.getElementById("tbody");
 const bookArray = [];
+
+bookForm.addEventListener("submit", function(event){
+  if (title.value === "" || author.value === "" || isbn.value === "") {
+    alert("Fields cannot be empty");
+  } else {
+    const book = new Book(title.value, author.value, isbn.value);
+    const ui = new UI();
+    ui.addBook(book);
+    ui.clearField();
+    ui.displayBook(book);
+  }
+  event.preventDefault();
+} )
 
 searchForm.addEventListener("submit", function (e, searchInput) {
   let ui = new UI();
@@ -138,15 +152,3 @@ UI.prototype.searchBook = function () {
   });
 };
 
-addButton.onclick = function (event) {
-  if (title.value === "" || author.value === "" || isbn.value === "") {
-    alert("Fields cannot be empty");
-  } else {
-    const book = new Book(title.value, author.value, isbn.value);
-    const ui = new UI();
-    ui.addBook(book);
-    ui.clearField();
-    ui.displayBook(book);
-  }
-  event.preventDefault();
-};
