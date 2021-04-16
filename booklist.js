@@ -79,18 +79,29 @@ UI.prototype.displayBook = function (book) {
   editButton.onclick = function () {
     console.log("edit clicked");
     const editDiv = document.createElement("div");
+    const p = document.createElement("p");
     const newTitle = document.createElement("input");
     const newAuthor = document.createElement("input");
     const newISBN = document.createElement("input");
+    const tlabel = document.createElement("label");
+    const alabel =document.createElement("label");
+    const ilabel =document.createElement("label");
+    tlabel.textContent = "Title";
+    alabel.textContent = "Author";
+    ilabel.textContent = "ISBN";
     const updateButton = document.createElement("button");
-    newTitle.placeholder = "Update book title";
-    newAuthor.placeholder = "Update author name";
-    newISBN.placeholder = "Update ISBN";
+    newTitle.value= book.title;
+    newAuthor.value = book.author;
+    newISBN.value = book.isbn;
     updateButton.textContent = "Update";
+    editDiv.appendChild(tlabel);
     editDiv.appendChild(newTitle);
+    editDiv.appendChild(alabel);
     editDiv.appendChild(newAuthor);
+    editDiv.appendChild(ilabel);
     editDiv.appendChild(newISBN);
     editDiv.appendChild(updateButton);
+    bookRow.appendChild(p);
     bookRow.appendChild(editDiv);
 
     updateButton.onclick = function () {
