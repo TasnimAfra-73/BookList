@@ -1,10 +1,19 @@
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const isbn = document.getElementById("isbn");
+const searchInput = document.getElementById("searchInput");
+const searchForm = document.getElementById("searchForm");
 const addButton = document.getElementById("add");
 const dltButton = document.getElementById("delete");
 const bookList = document.getElementById("tbody");
 const bookArray = [];
+
+searchForm.addEventListener("submit", function (e) {
+  let ui = new UI();
+  ui.searchBook();
+  e.preventDefault();
+  console.log("inside event");
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   let ui = new UI();
@@ -116,6 +125,20 @@ UI.prototype.getBook = function () {
       bookArray.push(element);
     });
   }
+};
+
+UI.prototype.searchBook = function (event) {
+  var ui = new UI();
+  console.log("searched book");
+  bookRow.innerHTML = "";
+  var searchText = searchInput.value;
+  bookArray.forEach((element) => {
+    var title = element.title;
+    if (title.includes(searchText)) {
+      ui.displayBook(element);
+    }
+  });
+  event.preventDefault();
 };
 
 addButton.onclick = function (event) {
