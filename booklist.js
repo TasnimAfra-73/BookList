@@ -8,11 +8,10 @@ const dltButton = document.getElementById("delete");
 const bookList = document.getElementById("tbody");
 const bookArray = [];
 
-searchForm.addEventListener("submit", function (e) {
+searchForm.addEventListener("submit", function (e, searchInput) {
   let ui = new UI();
   ui.searchBook();
   e.preventDefault();
-  console.log("inside event");
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -127,10 +126,9 @@ UI.prototype.getBook = function () {
   }
 };
 
-UI.prototype.searchBook = function (event) {
+UI.prototype.searchBook = function () {
   var ui = new UI();
-  console.log("searched book");
-  bookRow.innerHTML = "";
+  bookList.innerHTML = "";
   var searchText = searchInput.value;
   bookArray.forEach((element) => {
     var title = element.title;
@@ -138,7 +136,6 @@ UI.prototype.searchBook = function (event) {
       ui.displayBook(element);
     }
   });
-  event.preventDefault();
 };
 
 addButton.onclick = function (event) {
